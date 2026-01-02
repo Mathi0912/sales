@@ -30,13 +30,13 @@ if uploaded_file:
     # FEATURE SELECTION
     # ----------------------------------
     features_uc1 = [
-        'InventoryLevel','Price','Discount','Promotion',
-        'CompetitorPricing','Seasonality','Epidemic'
+        'Inventory_Level','Price','Discount','Promotion',
+        'Competitor_Pricing','Seasonality','Epidemic'
     ]
 
     features_uc2 = [
         'Price','Discount','Promotion',
-        'CompetitorPricing','Seasonality','Epidemic'
+        'Competitor_Pricing','Seasonality','Epidemic'
     ]
 
     X1 = df[features_uc1]
@@ -62,9 +62,9 @@ if uploaded_file:
         # KPIs
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Avg Demand", round(df['Demand'].mean(), 2))
-        col2.metric("Avg Inventory", round(df['InventoryLevel'].mean(), 2))
+        col2.metric("Avg Inventory", round(df['Inventory_Level'].mean(), 2))
         col3.metric("Stock-out Risk",
-                    df[df['Demand'] > df['InventoryLevel']].shape[0])
+                    df[df['Demand'] > df['Inventory_Level']].shape[0])
         col4.metric("Prediction Mean",
                     round(df['Predicted_Demand_UC1'].mean(), 2))
 
@@ -74,7 +74,7 @@ if uploaded_file:
 
         # Inventory vs Demand
         st.subheader("Inventory vs Demand")
-        fig1 = px.scatter(df, x='InventoryLevel', y='Demand',
+        fig1 = px.scatter(df, x='Inventory_Level', y='Demand',
                           title="Inventory vs Demand")
         st.plotly_chart(fig1, use_container_width=True)
 
